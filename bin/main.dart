@@ -6,12 +6,12 @@ import 'package:angel_hot/angel_hot.dart';
 
 Future<void> main() async {
   var hot = HotReloader(createServer, [Directory('bin'), 'bin/main.dart']);
-  hot.startServer('127.0.0.1', 3000);
+  await hot.startServer('127.0.0.1', 3000);
 }
 
 Future<Angel> createServer() async {
   var app = Angel();
-  app.get('/', (req, res) => {res.write('get requested: Hello dummy')});
-
+  app.get('/', (req, res) => {res.write('get requested: Ahmad\'s Server')});
+  app.fallback((req, res) => throw AngelHttpException.notFound());
   return app;
 }
